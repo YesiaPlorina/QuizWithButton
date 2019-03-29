@@ -76,6 +76,26 @@ public class MainActivity extends AppCompatActivity {
             R.raw.listening_part_one_q_lima
     };
 
+    public String[] getPertanyaan_kuis() {
+        return pertanyaan_kuis;
+    }
+
+    public String[] getJawaban_kuis() {
+        return jawaban_kuis;
+    }
+
+    public String[] getJawaban_benar() {
+        return jawaban_benar;
+    }
+
+    public String[] getPenjelasan_jawaban() {
+        return penjelasan_jawaban;
+    }
+
+    public int[] getSuaraSoal() {
+        return suaraSoal;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,11 +108,7 @@ public class MainActivity extends AppCompatActivity {
         btnnPilihanB.setText(jawaban_kuis[1]);
         btnnPilihanC.setText(jawaban_kuis[2]);
         btnnPilihanD.setText(jawaban_kuis[3]);
-
-
-        //reset nilai ketika mengulang soal
-        benar = 0;
-        salah = 0;
+        tvPenjelasan.setText(penjelasan_jawaban[nomor]);
 
 
 
