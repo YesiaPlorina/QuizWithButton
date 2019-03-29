@@ -23,7 +23,7 @@
             android:id="@+id/tv_soal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_margin="10dp"
             android:text="Pertanyaan" />
 
 
@@ -81,14 +81,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_penjelasan_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:text="penjelasan" />
 
             <Button
                 android:id="@+id/btn_soal_next"

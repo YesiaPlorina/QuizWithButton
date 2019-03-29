@@ -1,12 +1,15 @@
 package com.yesia.quizwithbutton;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnnPilihanC;
     @BindView(R.id.btnn_pilihan_d)
     Button btnnPilihanD;
-    @BindView(R.id.btn_penjelasan_next)
-    Button btnPenjelasanNext;
     @BindView(R.id.btn_soal_next)
     Button btnSoalNext;
     @BindView(R.id.tv_penjelasan)
@@ -108,27 +109,55 @@ public class MainActivity extends AppCompatActivity {
         btnnPilihanB.setText(jawaban_kuis[1]);
         btnnPilihanC.setText(jawaban_kuis[2]);
         btnnPilihanD.setText(jawaban_kuis[3]);
-        tvPenjelasan.setText(penjelasan_jawaban[nomor]);
-
+//        tvPenjelasan.setText(penjelasan_jawaban[nomor]);
 
 
     }
 
-    @OnClick({R.id.btnn_pilihan_a, R.id.btnn_pilihan_b, R.id.btnn_pilihan_c, R.id.btnn_pilihan_d, R.id.btn_penjelasan_next, R.id.btn_soal_next})
+    public void penjelasan() {
+
+        tvPenjelasan.setText(penjelasan_jawaban[nomor]);
+        nomor++;
+        nomor = 0;
+
+    }
+
+    private void next() {
+
+        nomor++;
+        if (nomor < pertanyaan_kuis.length) {
+            tvSoal.setText(pertanyaan_kuis[nomor]);
+            btnnPilihanA.setText(jawaban_kuis[(nomor * 4) + 0]);
+            btnnPilihanB.setText(jawaban_kuis[(nomor * 4) + 1]);
+            btnnPilihanC.setText(jawaban_kuis[(nomor * 4) + 2]);
+            btnnPilihanD.setText(jawaban_kuis[(nomor * 4) + 3]);
+        } else {
+            Intent hasil = new Intent(MainActivity.this, HasilQuiz.class);
+            startActivity(hasil);
+        }
+
+    }
+
+
+    @OnClick({R.id.btnn_pilihan_a, R.id.btnn_pilihan_b, R.id.btnn_pilihan_c, R.id.btnn_pilihan_d, R.id.btn_soal_next})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnn_pilihan_a:
+
                 break;
             case R.id.btnn_pilihan_b:
+
                 break;
             case R.id.btnn_pilihan_c:
+
                 break;
             case R.id.btnn_pilihan_d:
-                break;
-            case R.id.btn_penjelasan_next:
+
                 break;
             case R.id.btn_soal_next:
+                next();
                 break;
         }
     }
+
 }

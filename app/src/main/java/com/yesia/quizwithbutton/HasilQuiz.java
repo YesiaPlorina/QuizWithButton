@@ -1,5 +1,6 @@
 package com.yesia.quizwithbutton;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -27,5 +28,7 @@ public class HasilQuiz extends AppCompatActivity {
 
     @OnClick(R.id.btn_ulangi)
     public void onViewClicked() {
+        Intent ulang = new Intent(HasilQuiz.this,MainActivity.class);
+        startActivity(ulang);
     }
 }
