@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvPenjelasan;
 
     int nomor = 0;
+    int urutan = 0;
     public static int hasil, benar, salah;
     public static MediaPlayer mediaPlayer;
 
@@ -109,18 +110,24 @@ public class MainActivity extends AppCompatActivity {
         btnnPilihanB.setText(jawaban_kuis[1]);
         btnnPilihanC.setText(jawaban_kuis[2]);
         btnnPilihanD.setText(jawaban_kuis[3]);
-//        tvPenjelasan.setText(penjelasan_jawaban[nomor]);
 
 
     }
 
     public void penjelasan() {
 
-        tvPenjelasan.setText(penjelasan_jawaban[nomor]);
-        nomor++;
-        nomor = 0;
+
+        if (urutan < pertanyaan_kuis.length) {
+            if (pertanyaan_kuis[urutan] == jawaban_benar[urutan]) {
+                tvPenjelasan.setText(penjelasan_jawaban[urutan]);
+                urutan++;
+            }else {
+                Toast.makeText(this, "Salah", Toast.LENGTH_SHORT).show();
+            }
+        }
 
     }
+
 
     private void next() {
 
@@ -131,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
             btnnPilihanB.setText(jawaban_kuis[(nomor * 4) + 1]);
             btnnPilihanC.setText(jawaban_kuis[(nomor * 4) + 2]);
             btnnPilihanD.setText(jawaban_kuis[(nomor * 4) + 3]);
+
         } else {
             Intent hasil = new Intent(MainActivity.this, HasilQuiz.class);
             startActivity(hasil);
@@ -141,23 +149,65 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.btnn_pilihan_a, R.id.btnn_pilihan_b, R.id.btnn_pilihan_c, R.id.btnn_pilihan_d, R.id.btn_soal_next})
     public void onViewClicked(View view) {
+
         switch (view.getId()) {
             case R.id.btnn_pilihan_a:
-
+                pilihA();
+                penjelasan();
                 break;
             case R.id.btnn_pilihan_b:
-
+                pilihB();
+                penjelasan();
                 break;
             case R.id.btnn_pilihan_c:
-
+                pilihC();
+                penjelasan();
                 break;
             case R.id.btnn_pilihan_d:
-
+                pilihD();
+                penjelasan();
                 break;
             case R.id.btn_soal_next:
+                pilihNext();
                 next();
                 break;
         }
+    }
+
+
+    private void pilihNext() {
+        btnnPilihanA.setVisibility(View.VISIBLE);
+        btnnPilihanB.setVisibility(View.VISIBLE);
+        btnnPilihanC.setVisibility(View.VISIBLE);
+        btnnPilihanD.setVisibility(View.VISIBLE);
+    }
+
+    private void pilihD() {
+        btnnPilihanA.setVisibility(View.INVISIBLE);
+        btnnPilihanB.setVisibility(View.INVISIBLE);
+        btnnPilihanC.setVisibility(View.INVISIBLE);
+        btnnPilihanD.setVisibility(View.VISIBLE);
+    }
+
+    private void pilihC() {
+        btnnPilihanA.setVisibility(View.INVISIBLE);
+        btnnPilihanB.setVisibility(View.INVISIBLE);
+        btnnPilihanC.setVisibility(View.VISIBLE);
+        btnnPilihanD.setVisibility(View.INVISIBLE);
+    }
+
+    private void pilihB() {
+        btnnPilihanA.setVisibility(View.INVISIBLE);
+        btnnPilihanB.setVisibility(View.VISIBLE);
+        btnnPilihanC.setVisibility(View.INVISIBLE);
+        btnnPilihanD.setVisibility(View.INVISIBLE);
+    }
+
+    private void pilihA() {
+        btnnPilihanA.setVisibility(View.VISIBLE);
+        btnnPilihanB.setVisibility(View.INVISIBLE);
+        btnnPilihanC.setVisibility(View.INVISIBLE);
+        btnnPilihanD.setVisibility(View.INVISIBLE);
     }
 
 }
